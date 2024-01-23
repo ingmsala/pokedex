@@ -77,6 +77,7 @@ export class PokemonModel {
       const pokemon = await makeRequest(`/pokemon/${name}`)
       const pokemonWithDetails = {
         name: pokemon.name,
+        totalStats: totalStats(pokemon.stats),
         stats: pokemon.stats,
         types: pokemon.types,
         image: pokemon.sprites.other['official-artwork'].front_default,
