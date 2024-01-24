@@ -125,7 +125,7 @@ describe('GET /pokemon?searchName=pikachu', () => {
       })
     })
   
-    it('should respond with a number for totalStats', async () => {
+    test('should respond with a number for totalStats', async () => {
       const response = await request(app).get('/pokemon/type/grass').send()
       const pokemons = response.body.pokemons
   
@@ -134,6 +134,13 @@ describe('GET /pokemon?searchName=pikachu', () => {
       })
     })
   
+  })
+
+  describe('GET /pokemon/type/noexist', () => {
+    test('should respond with a 404 status code', async () => {
+      const response = await request(app).get('/pokemon/type/noexist').send()
+      expect(response.statusCode).toBe(404)
+    })
   })
   
 afterAll(() => {
