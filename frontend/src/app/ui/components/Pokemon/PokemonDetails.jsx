@@ -1,10 +1,12 @@
 import LabelTypes from '../PokemonTypes/LabelTypes'
+import ButtonBack from './ButtonBack'
 import PokemonAbilities from './PokemonAbilities'
 import PokemonStats from './PokemonStats'
 
 export default function PokemonDetails ({ pokemon }) {
   return (
-    <div className='flex flex-col md:flex-row gap-4 bg-gray-300 dark:bg-gray-900 py-6 justify-center items-center  md:justify-between px-8 rounded-lg min-w-min'>
+    <div className='relative flex flex-col md:flex-row gap-4 bg-gray-300 dark:bg-gray-900 py-6 justify-center items-center  md:justify-between px-8 rounded-lg min-w-min'>
+      <ButtonBack />
       <img src={pokemon.image} alt={pokemon.name} className='w-1/2' />
       <div className='flex flex-1 w-full flex-col justify-center items-center gap-3'>
         <h2 className='font-semibold text-gray-700 dark:text-gray-300 text-2xl uppercase'>{pokemon.name}</h2>

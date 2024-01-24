@@ -199,6 +199,7 @@ export const routerPokemon = Router()
  *             items:
  *              $ref: '#/components/schemas/Pokemon'
  *           example:
+ *            - pokemons:
  *              - name: "bulbasaur"
  *                totalStats: 318
  *                types:
@@ -249,6 +250,7 @@ export const routerPokemon = Router()
  *                      slot: 3
  *                weight: 6,9 kg
  *                height: 0,7 m
+ *            - next: 20
  *      '500':
  *        description: Internal Server Error
  */
@@ -356,7 +358,7 @@ routerPokemon.get('/:name', getPokemonByNameController)
  *        required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response. Returns an array with two objects, a list of pokemons and the next offset (Can be a number or null)
  *        content:
  *         application/json:
  *           schema:
@@ -364,6 +366,7 @@ routerPokemon.get('/:name', getPokemonByNameController)
  *             items:
  *              $ref: '#/components/schemas/Pokemon'
  *           example:
+ *            - pokemons:
  *              - name: "bulbasaur"
  *                stats:
  *                   - base_stat: 45
@@ -399,6 +402,7 @@ routerPokemon.get('/:name', getPokemonByNameController)
  *                      slot: 3
  *                weight: 6,9 kg
  *                height: 0,7 m
+ *            - next: null
  *      '404':
  *          description: Not Found
  *          content:
@@ -409,7 +413,7 @@ routerPokemon.get('/:name', getPokemonByNameController)
  *                   error:
  *                     type: string
  *                     description: Error message
- *                     example: "No se encontraron pokemones de ese tip"
+ *                     example: "No pokemon of that type were found"
  *
  *      '500':
  *        description: Internal Server Error

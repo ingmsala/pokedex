@@ -30,14 +30,18 @@ export class PokemonModel {
   */
   static getPokemonList = async (limit = 20, offset = 0, searchName = null) => {
     let pokemonList = []
+    let next = null
     if (searchName) {
       const response = await makeRequest('/pokemon?offset=0&limit=10000')
       const matchingPokemon = response.results.filter(
         (pokemon) => pokemon.name.includes(searchName)
       )
-      pokemonList = matchingPokemon.slice(offset, offset + limit)
+      pokemonList = matchingPokemon.slice(offset, parseInt(offset) + parseInt(limit))
+      const total = matchingPokemon.length
+      next = total > parseInt(offset) + parseInt(limit) ? parseInt(offset) + parseInt(limit) : null
     } else {
       const res = await makeRequest(`/pokemon?limit=${limit}&offset=${offset}`)
+      next = res.next
       pokemonList = res.results
     }
 
@@ -45,7 +49,7 @@ export class PokemonModel {
       return []
     }
     const pokemonListPaginated = await getPokemonWithDetails(pokemonList)
-    return pokemonListPaginated
+    return { pokemons: pokemonListPaginated, next }
   }
 
   /**
@@ -56,12 +60,20 @@ export class PokemonModel {
     * @returns {Promise<Array>} - Lista de Pokemon por tipo
   */
   static getPokemonListByType = async (limit = 20, offset = 0, type = null) => {
+    console.log('offset', offset)
     try {
       const response = await makeRequest(`/type/${type}?limit=${limit}&offset=${offset}`)
+
       const pokemonList = response.pokemon.map((data) => data.pokemon)
-      const pokemonListPaginated = pokemonList.slice(offset, offset + limit)
+      const pokemonListPaginated = pokemonList.slice(offset, parseInt(offset) + parseInt(limit))
+
+      console.log('pokemonListPaginated', pokemonListPaginated.length)
+
+      const total = response.pokemon.length
+      const next = total > parseInt(offset) + parseInt(limit) ? parseInt(offset) + parseInt(limit) : null
+
       const pokemonListPaginatedDetails = await getPokemonWithDetails(pokemonListPaginated)
-      return pokemonListPaginatedDetails
+      return { pokemons: pokemonListPaginatedDetails, next }
     } catch (error) {
       return []
     }

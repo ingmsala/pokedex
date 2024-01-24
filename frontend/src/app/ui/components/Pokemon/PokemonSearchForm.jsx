@@ -25,12 +25,11 @@ export default function PokemonSearchForm ({ searchPokemon, searchType }) {
     const { value: name } = e.target[0]
     const { value: type } = e.target[1]
 
-    if (name === '' && type === -1) return
-
+    if (name === '' && type === '-1') return
     if (name !== '') {
       return router.push(`/pokemon/search/${name.toLowerCase()}`)
     } else {
-      if (selectRef.current.value !== -1) {
+      if (selectRef.current.value !== '-1') {
         return router.push(`/pokemon/type/${type}`)
       }
     }

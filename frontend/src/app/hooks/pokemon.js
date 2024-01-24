@@ -2,24 +2,25 @@
 
 import useSWR from 'swr'
 import { fetcher } from '../utils/fetcher'
+import { PAGINATION_LIMIT } from '../utils/constants'
 
 export default function usePokemon () {
-  const getList = (searchName = null, searchType = -1) => {
+  const getList = (searchName = null, searchType = -1, page = 0) => {
     if (searchName) {
-      const { data, error } = useSWR('http://localhost:3000/pokemon?searchName=' + searchName, fetcher)
+      const { data, error } = useSWR(`http://localhost:3000/pokemon?searchName=${searchName}&offset=${page * PAGINATION_LIMIT}`, fetcher)
       return {
         data,
         error
       }
     }
     if (searchType !== -1) {
-      const { data, error } = useSWR('http://localhost:3000/pokemon/type/' + searchType, fetcher)
+      const { data, error } = useSWR(`http://localhost:3000/pokemon/type/${searchType}?offset=${page * PAGINATION_LIMIT}`, fetcher)
       return {
         data,
         error
       }
     }
-    const { data, error } = useSWR('http://localhost:3000/pokemon', fetcher)
+    const { data, error } = useSWR(`http://localhost:3000/pokemon?offset=${page * PAGINATION_LIMIT}`, fetcher)
     return {
       data,
       error

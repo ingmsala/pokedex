@@ -6,13 +6,13 @@ export const getPokemonListController = async (req, res) => {
     const { limit, offset, searchName } = req.query
     const pokemonList = await PokemonModel.getPokemonList(limit, offset, searchName)
     if (pokemonList.length === 0) {
-      res.json({ error: 'No se encontraron resultados' })
+      res.json({ error: 'No results found' })
     } else {
       res.json(pokemonList)
     }
   } catch (error) {
-    console.error('Error al obtener la lista de Pokemon:', error)
-    res.status(500).json({ error: 'Error al obtener la lista de Pokemon' })
+    console.error('Error getting Pokemon list:', error)
+    res.status(500).json({ error: 'Error getting Pokemon list' })
   }
 }
 
@@ -25,13 +25,13 @@ export const getPokemonListByTypeController = async (req, res) => {
     // empty pokemonList
 
     if (pokemonList.length === 0) {
-      res.status(404).json({ error: 'No se encontraron pokemones de ese tipo' })
+      res.status(404).json({ error: 'No pokemon of that type were found' })
     } else {
       res.json(pokemonList)
     }
   } catch (error) {
-    console.error('Error al obtener la lista de Pokemon:', error)
-    res.status(500).json({ error: 'Error al obtener la lista de Pokemon' })
+    console.error('Error getting Pokemon list:', error)
+    res.status(500).json({ error: 'Error getting Pokemon list' })
   }
 }
 
@@ -73,8 +73,8 @@ export const getPokemonListController = async (req, res) => {
     const pokemonWithDetails = await getPokemonWithDetails(pokemonList)
     res.json(pokemonWithDetails)
   } catch (error) {
-    console.error('Error al obtener la lista de Pokemon:', error)
-    res.status(500).json({ error: 'Error al obtener la lista de Pokemon' })
+    console.error('Error getting Pokemon list:', error)
+    res.status(500).json({ error: 'Error getting Pokemon list' })
   }
 }
 
@@ -86,8 +86,8 @@ export const getPokemonListByTypeController = async (req, res) => {
     const pokemonWithDetails = await getPokemonWithDetails(pokemonList)
     res.json(pokemonWithDetails)
   } catch (error) {
-    console.error('Error al obtener la lista de Pokemon:', error)
-    res.status(500).json({ error: 'Error al obtener la lista de Pokemon' })
+    console.error('Error getting Pokemon list:', error)
+    res.status(500).json({ error: 'Error getting Pokemon list' })
   }
 }
 
