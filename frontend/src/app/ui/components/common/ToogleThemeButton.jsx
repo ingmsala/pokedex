@@ -20,7 +20,7 @@ export default function ToogleThemeButton () {
   }
 
   return (
-    <button type='button'className='flex gap-2 hover:text-gray-500 text-gray-400' onClick={handleToogleTheme}>
+    <button type='button' aria-label='Toogle theme' className='flex gap-2 hover:text-gray-500 text-gray-400' onClick={handleToogleTheme}>
       {
         (theme === THEME_DARK)
           ? (

@@ -14,6 +14,5 @@ export default function ThemeProviders ({ children }) {
   if (!mounted) {
     return <>{children}</>
   }
-
-  return <ThemeProvider attribute='class'>{children}</ThemeProvider>
+  return <ThemeProvider attribute='class' defaultTheme='system'>{children}</ThemeProvider>
 }

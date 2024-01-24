@@ -80,7 +80,7 @@ export class PokemonModel {
         totalStats: totalStats(pokemon.stats),
         stats: pokemon.stats,
         types: pokemon.types,
-        image: pokemon.sprites.other['official-artwork'].front_default,
+        image: pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.other.home.front_default || pokemon.sprites.front_default,
         abilities: pokemon.abilities,
         height: convertDecimetersToMeters(pokemon.height),
         weight: convertHectogramsToKilograms(pokemon.weight)

@@ -5,7 +5,11 @@ export const getPokemonListController = async (req, res) => {
   try {
     const { limit, offset, searchName } = req.query
     const pokemonList = await PokemonModel.getPokemonList(limit, offset, searchName)
-    res.json(pokemonList)
+    if (pokemonList.length === 0) {
+      res.json({ error: 'No se encontraron resultados' })
+    } else {
+      res.json(pokemonList)
+    }
   } catch (error) {
     console.error('Error al obtener la lista de Pokemon:', error)
     res.status(500).json({ error: 'Error al obtener la lista de Pokemon' })
