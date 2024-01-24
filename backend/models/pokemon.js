@@ -60,14 +60,11 @@ export class PokemonModel {
     * @returns {Promise<Array>} - Lista de Pokemon por tipo
   */
   static getPokemonListByType = async (limit = 20, offset = 0, type = null) => {
-    console.log('offset', offset)
     try {
       const response = await makeRequest(`/type/${type}?limit=${limit}&offset=${offset}`)
 
       const pokemonList = response.pokemon.map((data) => data.pokemon)
       const pokemonListPaginated = pokemonList.slice(offset, parseInt(offset) + parseInt(limit))
-
-      console.log('pokemonListPaginated', pokemonListPaginated.length)
 
       const total = response.pokemon.length
       const next = total > parseInt(offset) + parseInt(limit) ? parseInt(offset) + parseInt(limit) : null

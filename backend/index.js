@@ -25,6 +25,8 @@ app.use((req, res) => {
   res.status(404).send('Not found')
 })
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`)
 })
+
+export {app, server}
