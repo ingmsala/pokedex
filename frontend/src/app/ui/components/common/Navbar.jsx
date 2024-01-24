@@ -9,7 +9,7 @@ export default function Navbar () {
 
   return (
     <nav
-      className='flex fixed top-0 justify-between items-center w-full py-4 px-10 z-10
+      className='flex flex-wrap fixed top-0 justify-between items-center w-full py-4 px-10 z-10
      bg-white backdrop-filter backdrop-blur-md bg-opacity-50 dark:bg-opacity-10 '>
       <Link href='/' className=' hover:text-gray-500 text-gray-800 dark:text-gray-200 select-none text-2xl'>Pokedex</Link>
       <ul className='flex gap-4'>

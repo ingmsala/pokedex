@@ -1,7 +1,8 @@
-import LabelTypes from '../PokemonTypes/LabelTypes'
+import LabelTypesContainer from '../PokemonTypes/LabelTypesContainer'
 import ButtonBack from './ButtonBack'
-import PokemonAbilities from './PokemonAbilities'
-import PokemonStats from './PokemonStats'
+import PokemonAbilitiesContainer from './PokemonAbilitiesContainer'
+import PokemonMesures from './PokemonMesures'
+import PokemonStatsContainer from './PokemonStatsContainer'
 
 export default function PokemonDetails ({ pokemon }) {
   return (
@@ -10,41 +11,10 @@ export default function PokemonDetails ({ pokemon }) {
       <img src={pokemon.image} alt={pokemon.name} className='w-1/2' />
       <div className='flex flex-1 w-full flex-col justify-center items-center gap-3'>
         <h2 className='font-semibold text-gray-700 dark:text-gray-300 text-2xl uppercase'>{pokemon.name}</h2>
-        <section className='flex gap-2'>
-          {
-            pokemon.types.map(pokemonType => (
-              <LabelTypes pokemonType={pokemonType} key={pokemonType.type.name} />
-            ))
-          }
-        </section>
-        <section className='flex justify-between gap-4'>
-          <p>
-            <span className='text-sm'>Height: </span>
-            <span className='text-xs dark:text-gray-300'>{pokemon.height}</span>
-          </p>
-          <p>
-            <span className='text-sm'>Weight: </span>
-            <span className='text-xs dark:text-gray-300'>{pokemon.weight}</span>
-          </p>
-
-        </section>
-        <section className='flex flex-col gap-1 w-full'>
-          <h3 className='text-sm'>Abilities</h3>
-          {
-            pokemon.abilities.map(ability => (
-              <PokemonAbilities ability={ability} key={ability.ability.name} />
-            ))
-          }
-        </section>
-
-        <section className='flex flex-col gap-1 w-full'>
-          <h3 className='text-sm'>Statistics</h3>
-          {
-            pokemon.stats.map(stats => (
-              <PokemonStats stats={stats} key={stats.stat.name} />
-            ))
-          }
-        </section>
+        <LabelTypesContainer pokemon={pokemon} />
+        <PokemonMesures pokemon={pokemon} />
+        <PokemonAbilitiesContainer pokemon={pokemon} />
+        <PokemonStatsContainer pokemon={pokemon} />
         <p className='text-xs dark:text-gray-300'>Total Stats: {pokemon.totalStats}</p>
       </div>
     </div>

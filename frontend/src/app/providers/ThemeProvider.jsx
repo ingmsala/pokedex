@@ -8,8 +8,7 @@ export default function ThemeProviders ({ children }) {
 
   useEffect(() => {
     setMounted(true)
-  }
-  , [])
+  }, [])
 
   if (!mounted) {
     return <>{children}</>
