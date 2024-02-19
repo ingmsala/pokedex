@@ -43,7 +43,7 @@ Para poder ejecutar este proyecto en su máquina local, necesitará tener instal
 - Node.js (https://nodejs.org) - versión 18.7 o superior
 - Gestor de paquetes npm (viene con Node.js)
 
-## Instalación
+## Instalaciones
 
 Siga estos pasos para configurar el proyecto en su entorno local
 
